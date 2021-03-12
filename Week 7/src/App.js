@@ -1,21 +1,36 @@
+import { Component } from 'react';
 import './App.css';
-// Import new components
-import Laps from './components/Tracker1';
-import Pushups from './components/Tracker2';
+import Miles from './components/Miles';
+import Pushups from './components/Pushups';
+import Disclaimer from './components/Disclaimer';
 
-function App() {
+class App extends Component {
+    state = {
+    visible : true
+  };
+
+  handleHide= () => {
+    this.setState({
+      visible: false
+    })
+  }
+  render() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Exercise Tracker</h1>
-        <div>
-           {/* Render Trackers */}
-          <Laps/>
-          <Pushups/>
-        </div>
-      </header>
+      {this.state.visible ? <Disclaimer/> : null }
+      <button 
+      onClick={this.handleHide}>
+        Hide Disclaimer
+      </button>
+      <h1>Tracker:</h1>
+      <Miles/>
+      <Pushups/>
+      
     </div>
+    
+    
   );
+}
 }
 
 export default App;
